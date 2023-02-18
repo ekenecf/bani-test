@@ -1,9 +1,78 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from 'react-redux'
+import { useParams } from 'react-router-dom'
+
 import { FaMoneyBillWave } from "react-icons/fa";
 import { GrFacebook, GrTwitter, GrInstagram } from "react-icons/gr";
 import { AiOutlineWhatsApp } from "react-icons/ai";
+import {
+  setCountryCode,
+  setPhoneNumber,
+  setEmail,
+  setFirstName,
+  setlastName,
+  setMessage,
+  setPayment,
+} from './redux/Fixed'
+import { FixedPayment } from './redux/FixedApi'
+
 
 const Dynamic = () => {
+  const dispatch = useDispatch()
+  let { donate } = useParams()
+  const ref_route = donate.concat('-vera-wangg')
+
+  useEffect(() => {
+    dispatch(FixedPayment(ref_route))
+  }, [])
+
+  const {
+    loading,
+    data,
+    error,
+    phoneNumber,
+    country_code,
+    phone,
+    emailInput,
+    FirstName,
+    lastName,
+    message,
+    payment,
+  } = useSelector((state) => state.fixedReducer)
+
+  const handleSelect = (e) => {
+    const optionValue = e.target.value
+    dispatch(setCountryCode(optionValue))
+  }
+
+  const handlePhone = (e) => {
+    const phoneValue = e.target.value
+    dispatch(setPhoneNumber(country_code.concat(phoneValue)))
+  }
+
+  const handleName = (e) => {
+    const nameValue = e.target.value
+    dispatch(setFirstName(nameValue))
+  }
+  const handleLastName = (e) => {
+    const lastNameValue = e.target.value
+    dispatch(setlastName(lastNameValue))
+  }
+  const handleEmail = (e) => {
+    const emailValue = e.target.value
+    dispatch(setEmail(emailValue))
+  }
+  const handleMessage = (e) => {
+    const messageValue = e.target.value
+    dispatch(setMessage(messageValue))
+  }
+  const handlePayment = (e) => {
+    const paymentValue = e.target.value
+    dispatch(setPayment(paymentValue))
+  }
+
+  console.log('incoming data', payment)
+
   return (
     <div className="h-max bg-slate-200 lg:flex lg:items-start">
       <div className="bg-slate-200 pt-20 px-10 lg:mb-8	lg:w-1/2">
@@ -48,7 +117,9 @@ const Dynamic = () => {
                 </label>
                 <div className="flex items-center ml-3 lg:w-full">
                   <div className="relative mb-2 lg:w-full">
-                    <select class="block appearance-none w-full lg:w-full border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
+                    <select 
+                      onChange={(e) => handleSelect(e)}
+                    class="block appearance-none w-full lg:w-full border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
                       <option>New Mexico</option>
                       <option>Missouri</option>
                       <option>Texas</option>
@@ -68,6 +139,7 @@ const Dynamic = () => {
                       type="Number"
                       class="appearance-none block w-full lg:w-full text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                       placeholder="Phone-Number"
+                      onChange={(e) => handlePhone(e)}
                     />
                   </div>
                 </div>
@@ -83,6 +155,7 @@ const Dynamic = () => {
                   class="appearance-none block w-full text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                   type="text"
                   placeholder="FIRST-NAME"
+                  onChange={(e) => handleName(e)}
                 />
               </div>
             </div>
@@ -97,6 +170,7 @@ const Dynamic = () => {
                 <input
                   class="appearance-none block lg:w-full w-full  text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                   placeholder="LAST-NAME"
+                  onChange={(e) => handleLastName(e)}
                 />
               </div>
             </div>
@@ -111,7 +185,8 @@ const Dynamic = () => {
                 <input
                   class="appearance-none block w-full text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                   type="text"
-                  placeholder="EMAIL"
+                  placeholder="EMAIL-ADDRESS"
+                  onChange={(e) => handleEmail(e)}
                 />
               </div>
               <div class="w-full md:w-2/3 lg:w-full px-3 mb-6 md:mb-0 ">
@@ -124,6 +199,7 @@ const Dynamic = () => {
                 <textarea
                   class="appearance-none block w-full text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                   placeholder="WRITE A MESSAGE HERE"
+                  onChange={(e) => handleMessage(e)}
                 />
               </div>
             </div>
@@ -140,12 +216,14 @@ const Dynamic = () => {
             placeholder="NGN"
           />
           <input
+            type="number"
             class="shadow appearance-none border lg:w-3/4 rounded mr-3 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             placeholder="Input Amount"
+            onChange={(e) => handlePayment(e)}
           />
         </div>
         <button class="bg-blue-500 w-11/12 mx-3 lg:mb-4 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded">
-          Pay
+          Pay {payment}
         </button>
       </div>
     </div>
