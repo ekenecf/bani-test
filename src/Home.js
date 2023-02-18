@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 function Home() {
   return (
@@ -20,7 +21,7 @@ function Home() {
             Dynamic Payment
           </button>
           <button className="transition duration-700 ease-in-out bg-blue-500 hover:bg-blue-400 text-white h-20 md:w-1/4 w-1/2 font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
-            Fixed Payment
+            <Link to="/fixed/share-the-money">Fixed Payment</Link>
           </button>
         </div>
       </div>

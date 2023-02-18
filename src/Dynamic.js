@@ -1,8 +1,7 @@
 import React from "react";
 import { FaMoneyBillWave } from "react-icons/fa";
 import { GrFacebook, GrTwitter, GrInstagram } from "react-icons/gr";
-import { AiOutlineWhatsApp, AiFillMinusCircle } from "react-icons/ai";
-import { MdOutlineAddCircle } from "react-icons/md";
+import { AiOutlineWhatsApp } from "react-icons/ai";
 
 const Dynamic = () => {
   return (
