@@ -1,10 +1,12 @@
 import React from 'react'
 import Fixed from './Fixed'
+import Dynamic from './Dynamic'
 
 function PaymentMethod() {
   return (
     <div className='h-max'>
-      <Fixed />
+      {/* <Fixed /> */}
+      <Dynamic />
     </div>
   )
 }

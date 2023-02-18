@@ -4,7 +4,7 @@ import { GrFacebook, GrTwitter, GrInstagram } from "react-icons/gr";
 import { AiOutlineWhatsApp, AiFillMinusCircle } from "react-icons/ai";
 import { MdOutlineAddCircle } from "react-icons/md";
 
-const Fixed = () => {
+const Dynamic = () => {
   return (
     <div className="h-max bg-slate-200 lg:flex lg:items-start">
       <div className="bg-slate-200 pt-20 px-10 lg:mb-8	lg:w-1/2">
@@ -133,37 +133,24 @@ const Fixed = () => {
       </div>
       <div className="mt-8 bg-white mx-10 lg:mt-20 lg:mx-0 lg:w-2/5">
         <p className="p-3 font-medium">Payment for product</p>
-        <div className="flex gap-x-20 md:gap-x-20 lg:gap-x-72">
-          <p className="font-thin text-sm pl-3 lg:text-lg lg:font-normal">Quantity</p>
-          <div className="flex gap-x-4">
-            <MdOutlineAddCircle className="text-2xl md:text-3xl lg:text-4xl text-blue-700" />
-            <input
-              type="Number"
-              class="appearance-none block w-3/12 bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-              disabled
-            />
-            <AiFillMinusCircle className="text-2xl md:text-3xl lg:text-4xl text-blue-700" />
-          </div>
-        </div>
         <p className="font-thin text-sm pl-3 lg:text-lg lg:font-normal">Total</p>
         <div className="flex h-2/5 justify-between lg:justify-start items-center my-4">
-          {/* <p className="pl-3 bg-red-400">NGN </p> */}
           <input
             class="appearance-none block w-3/12 lg:w-20 bg-gray-200 text-gray-700 text-center border rounded py-2 ml-4 leading-tight focus:outline-none focus:bg-white"
             disabled
             placeholder="NGN"
           />
           <input
-            disabled
             class="shadow appearance-none border lg:w-3/4 rounded mr-3 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            placeholder="Input Amount"
           />
         </div>
         <button class="bg-blue-500 w-11/12 mx-3 lg:mb-4 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded">
-          Pay(48,000)
+          Pay
         </button>
       </div>
     </div>
   );
 };
 
-export default Fixed;
+export default Dynamic;
