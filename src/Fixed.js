@@ -26,7 +26,6 @@ const Fixed = () => {
   const {
     loading,
     data,
-    error,
     phoneNumber,
     country_code,
     emailInput,
@@ -128,29 +127,29 @@ const Fixed = () => {
         <div className="bg-white mt-6 h-max p-4 lg:w-full md:w-3/5 ">
           <h2 className="text-lg font-semibold mb-3">Customer's details</h2>
           <form className="w-full max-w-lg ">
-            <div className="flex flex-wrap -mx-3 lg:mb-2 md:mb-2 mb-6 lg:items-center">
+            <div className="flex flex-wrap -ml-3 lg:mb-2 md:mb-2 mb-6 lg:items-center">
               <div className="lg:w-full">
                 <label
-                  class="uppercase tracking-wide text-gray-700 flex text-xs font-normal mb-2 ml-3"
+                  className="uppercase tracking-wide text-gray-700 flex text-xs font-normal mb-2 ml-3"
                   for="grid-first-name"
                 >
                   Your Phone Number<p className="text-red-600	">*</p>
                 </label>
-                <div className="flex items-center ml-3 lg:w-full">
+                <div className="flex items-center ml-3 pr-3 lg:w-full">
                   <div className="relative mb-2 lg:w-full">
                     <select
                       onChange={(e) => handleSelect(e)}
-                      class="block appearance-none w-full lg:w-full border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                      classNAme="block appearance-none w-full lg:w-full border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                     >
-                      <option>Select</option>
+                      <option>SELECT CC</option>
                       <option>+234</option>
                       <option>+1</option>
                       <option>+233</option>
                       <option>+256</option>
                     </select>
-                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                    <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
                       <svg
-                        class="fill-current h-4 w-4"
+                        className="fill-current h-4 w-4"
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 20 20"
                       >
@@ -158,68 +157,68 @@ const Fixed = () => {
                       </svg>
                     </div>
                   </div>
-                  <div class="w-full lg:w-full md:w-1/2 px-3 md:mb-0 h-2/3">
+                  <div className="w-full lg:w-full md:w-1/2 px-3 md:mb-0 h-2/3">
                     <input
                       type="Number"
-                      class="appearance-none block w-full lg:w-full text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                      className="appearance-none block w-full lg:w-full text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                       placeholder="Phone-Number"
                       onChange={(e) => handlePhone(e)}
                     />
                   </div>
                 </div>
               </div>
-              <div class="w-full lg:w-full md:w-3/5 px-3">
+              <div className="w-full lg:w-full md:w-3/5 px-3">
                 <label
-                  class="block uppercase tracking-wide text-gray-700 flex text-xs font-normal mb-2"
+                  className="uppercase tracking-wide text-gray-700 flex text-xs font-normal mb-2"
                   for="grid-last-name"
                 >
                   full-name<p className="text-red-600	">*</p>
                 </label>
                 <input
-                  class="appearance-none block w-full text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                  className="appearance-none block w-full text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                   placeholder="FIRST-NAME"
                   onChange={(e) => handleName(e)}
                 />
               </div>
             </div>
-            <div class="flex flex-wrap -mx-3 lg:w-full md:mb-0 mb-6 md:w-60">
-              <div class="w-full px-3 lg:w-full lg:mx-0">
+            <div className="flex flex-wrap -mx-3 lg:w-full md:mb-0 mb-6 md:w-96">
+              <div className="w-full pl-3 pr-5 lg:pl-3 lg:pr-0 lg:w-full lg:mx-0">
                 <label
-                  class="block uppercase tracking-wide text-gray-700 flex text-xs font-normal mb-2"
+                  className="uppercase tracking-wide text-gray-700 flex text-xs font-normal mb-2"
                   for="grid-password"
                 >
                   last-NAME <p className="text-red-600 ">*</p>
                 </label>
                 <input
-                  class="appearance-none block lg:w-full w-full  text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                  className="appearance-none block lg:w-full w-full  text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                   placeholder="LAST-NAME"
                   onChange={(e) => handleLastName(e)}
                 />
               </div>
             </div>
-            <div class="flex flex-wrap -mx-3 mb-2 md:flex-col lg:flex-col">
-              <div class="w-full md:w-3/5 px-3 mb-6 md:mb-0 lg:mb-4 lg:w-full">
+            <div className="flex flex-wrap -mx-3 mb-2 md:flex-col lg:flex-col">
+              <div className="w-full md:w-3/5 pl-3 pr-6 mb-6 md:mb-0 lg:mb-4 lg:w-full">
                 <label
-                  class="block uppercase flex tracking-wide text-gray-700 text-xs font-normal mb-2"
+                  className="uppercase flex tracking-wide text-gray-700 text-xs font-normal mb-2"
                   for="grid-city"
                 >
                   Email-address <p className="text-red-600	">*</p>
                 </label>
                 <input
-                  class="appearance-none block w-full text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                  className="appearance-none block w-full text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                   placeholder="EMAIL"
                   onChange={(e) => handleEmail(e)}
                 />
               </div>
-              <div class="w-full md:w-2/3 lg:w-full px-3 mb-6 md:mb-0 ">
+              <div className="w-full md:w-2/3 lg:w-full pl-3 pr-6 mb-6 md:mb-0 ">
                 <label
-                  class="block uppercase tracking-wide text-gray-700 text-xs font-normal mb-2"
+                  className="block uppercase tracking-wide text-gray-700 text-xs font-normal mb-2"
                   for="grid-zip"
                 >
                   message
                 </label>
                 <textarea
-                  class="appearance-none block w-full text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                  className="appearance-none block w-full text-gray-700 border border-gray-200 rounded h-36 py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                   placeholder="WRITE A MESSAGE HERE"
                   onChange={(e) => handleMessage(e)}
                 />
@@ -230,7 +229,7 @@ const Fixed = () => {
       </div>
       <div className="mt-8 bg-white md mx-10 lg:mt-20 lg:mx-0 lg:w-2/5">
         <p className="p-3 font-medium">Payment for product</p>
-        <div className="flex gap-x-20 md:gap-x-20 lg:gap-x-72">
+        <div className="flex gap-x-14 md:gap-x-20 lg:gap-x-48 xl:gap-x-60">
           <p className="font-thin text-sm pl-3 lg:text-lg lg:font-normal">
             Quantity
           </p>
@@ -255,13 +254,13 @@ const Fixed = () => {
         </p>
         <div className="flex h-2/5 justify-between lg:justify-start items-center my-4">
           <input
-            class="appearance-none block w-3/12 lg:w-20 bg-gray-200 text-gray-700 text-center border rounded py-2 ml-4 leading-tight focus:outline-none focus:bg-white"
+            className="appearance-none block w-3/12 lg:w-20 bg-gray-200 text-gray-700 text-center border rounded py-2 ml-4 leading-tight focus:outline-none focus:bg-white"
             disabled
             placeholder="NGN"
           />
           <input
             readOnly
-            class="shadow appearance-none border lg:w-3/4 rounded mr-3 py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline"
+            className="shadow appearance-none border lg:w-3/4 rounded mr-3 py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline"
             value={
               data.page_amount
                 ? increment_counter * data.page_amount
@@ -277,14 +276,14 @@ const Fixed = () => {
           />
         </div>
         <button
-          class="bg-blue-500 w-11/12 mx-3 lg:mb-4 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded"
+          className="bg-blue-500 w-11/12 mx-3 lg:mb-4 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded"
           onClick={(e) => payWithBani(e)}
         >
           {' '}
           {loading
             ? 'Please wait...'
             : data.page_amount
-            ? increment_counter * data.page_amount
+            ? `Pay (${increment_counter * data.page_amount})`
             : increment_counter}
         </button>
       </div>

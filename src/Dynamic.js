@@ -30,7 +30,6 @@ const Dynamic = () => {
   const {
     loading,
     data,
-    error,
     phoneNumber,
     country_code,
     emailInput,
@@ -127,9 +126,9 @@ const Dynamic = () => {
         </div>
         <div className="bg-white mt-6 h-max p-4 lg:w-full md:w-3/5 ">
           <h2 className="text-lg font-semibold mb-3">Customer's details</h2>
-          <form className="w-full max-w-lg ">
-            <div className="flex flex-wrap -mx-3 lg:mb-2 md:mb-2 mb-6 lg:items-center">
-              <div className="lg:w-full">
+          <form className="w-full lg:w-11/12">
+            <div className="flex flex-wrap -mx-3 lg:-mx-3 lg:mb-2 md:mb-2 mb-6 lg:items-center">
+              <div className="lg:w-full lg:mr-3">
                 <label
                   class="uppercase tracking-wide text-gray-700 flex text-xs font-normal mb-2 ml-3"
                   for="grid-first-name"
@@ -181,8 +180,8 @@ const Dynamic = () => {
                 />
               </div>
             </div>
-            <div class="flex flex-wrap -mx-3 lg:w-full md:mb-0 mb-6 md:w-60">
-              <div class="w-full px-3 lg:w-full lg:mx-0">
+            <div class="flex flex-wrap -mx-3 lg:m-0 lg:w-full md:mb-0 mb-6 md:w-60">
+              <div class="w-full px-3 lg:pr-0 lg:w-full lg:mx-0">
                 <label
                   class="uppercase tracking-wide text-gray-700 flex text-xs font-normal mb-2"
                   for="grid-password"
@@ -219,7 +218,7 @@ const Dynamic = () => {
                   message
                 </label>
                 <textarea
-                  class="appearance-none block w-full text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                  className="appearance-none block w-full text-gray-700 border border-gray-200 rounded h-36 py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                   placeholder="WRITE A MESSAGE HERE"
                   onChange={(e) => handleMessage(e)}
                 />
