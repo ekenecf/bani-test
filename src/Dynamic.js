@@ -15,6 +15,7 @@ import {
   setPayment,
 } from './redux/Fixed'
 import { FixedPayment } from './redux/FixedApi'
+import './index.css'
 
 const Dynamic = () => {
   const dispatch = useDispatch()
@@ -23,6 +24,7 @@ const Dynamic = () => {
 
   useEffect(() => {
     dispatch(FixedPayment(ref_route))
+    //eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const {
@@ -31,13 +33,14 @@ const Dynamic = () => {
     error,
     phoneNumber,
     country_code,
-    phone,
     emailInput,
     FirstName,
     lastName,
-    message,
+    // message,
     payment,
   } = useSelector((state) => state.fixedReducer)
+
+  console.log("ref_route", data.length === 0 ? null : data.page_ref)
 
   const handleSelect = (e) => {
     const optionValue = e.target.value
@@ -70,7 +73,26 @@ const Dynamic = () => {
     dispatch(setPayment(paymentValue))
   }
 
-  console.log('incoming data', payment)
+  const payWithBani = (e) => {
+    e.preventDefault()
+    window.BaniPopUp({
+      amount: payment,
+      phoneNumber: phoneNumber,
+      email: emailInput,
+      firstName: FirstName,
+      lastName: lastName,
+      merchantKey:
+        data.length === 0 ? null : data.page_creator_details.account_pub_key,
+      merchantRef: data.length === 0 ? null : data.page_ref,
+      onClose: (response) => {
+        console.log('ONCLOSE DATA', response)
+      },
+      callback: function (response) {
+        let message = 'Payment complete! Reference: ' + response?.reference
+        console.log(message, response)
+      },
+    })
+  }
 
   return (
     <div className="h-max bg-slate-200 lg:flex lg:items-start">
@@ -109,7 +131,7 @@ const Dynamic = () => {
             <div className="flex flex-wrap -mx-3 lg:mb-2 md:mb-2 mb-6 lg:items-center">
               <div className="lg:w-full">
                 <label
-                  class="block uppercase tracking-wide text-gray-700 flex text-xs font-normal mb-2 ml-3"
+                  class="uppercase tracking-wide text-gray-700 flex text-xs font-normal mb-2 ml-3"
                   for="grid-first-name"
                 >
                   Your Phone Number<p className="text-red-600	">*</p>
@@ -120,9 +142,9 @@ const Dynamic = () => {
                       onChange={(e) => handleSelect(e)}
                       class="block appearance-none w-full lg:w-full border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                     >
-                      <option>New Mexico</option>
-                      <option>Missouri</option>
-                      <option>Texas</option>
+                      <option>SELECT CC</option>
+                      <option>+234</option>
+                      <option>+233</option>
                     </select>
                     <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
                       <svg
@@ -146,7 +168,7 @@ const Dynamic = () => {
               </div>
               <div class="w-full lg:w-full md:w-3/5 px-3">
                 <label
-                  class="block uppercase tracking-wide text-gray-700 flex text-xs font-normal mb-2"
+                  class="uppercase tracking-wide text-gray-700 flex text-xs font-normal mb-2"
                   for="grid-last-name"
                 >
                   full-name<p className="text-red-600	">*</p>
@@ -162,7 +184,7 @@ const Dynamic = () => {
             <div class="flex flex-wrap -mx-3 lg:w-full md:mb-0 mb-6 md:w-60">
               <div class="w-full px-3 lg:w-full lg:mx-0">
                 <label
-                  class="block uppercase tracking-wide text-gray-700 flex text-xs font-normal mb-2"
+                  class="uppercase tracking-wide text-gray-700 flex text-xs font-normal mb-2"
                   for="grid-password"
                 >
                   last-NAME <p className="text-red-600 ">*</p>
@@ -177,7 +199,7 @@ const Dynamic = () => {
             <div class="flex flex-wrap -mx-3 mb-2 md:flex-col lg:flex-col">
               <div class="w-full md:w-3/5 px-3 mb-6 md:mb-0 lg:mb-4 lg:w-full">
                 <label
-                  class="block uppercase flex tracking-wide text-gray-700 text-xs font-normal mb-2"
+                  class="uppercase flex tracking-wide text-gray-700 text-xs font-normal mb-2"
                   for="grid-city"
                 >
                   Email-address <p className="text-red-600	">*</p>
@@ -206,7 +228,7 @@ const Dynamic = () => {
           </form>
         </div>
       </div>
-      <div className="mt-8 bg-white mx-10 lg:mt-20 lg:mx-0 lg:w-2/5">
+      <div className="mt-8 bg-white md mx-10 lg:mt-20 lg:mx-0 lg:w-2/5">
         <p className="p-3 font-medium">Payment for product</p>
         <p className="font-thin text-sm pl-3 lg:text-lg lg:font-normal">
           Total
@@ -224,8 +246,12 @@ const Dynamic = () => {
             onChange={(e) => handlePayment(e)}
           />
         </div>
-        <button class="bg-blue-500 w-11/12 mx-3 lg:mb-4 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded">
-          Pay {payment}
+        <button class="bg-blue-500 w-11/12 mx-3 lg:mb-4 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded"
+        onClick={(e) => payWithBani(e)}
+        >
+          {loading
+            ? 'Please wait...'
+            : `Pay ${payment}`}
         </button>
       </div>
     </div>

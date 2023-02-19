@@ -16,6 +16,7 @@ import {
   setIncrementCounter,
 } from './redux/Fixed'
 import { FixedPayment } from './redux/FixedApi'
+import './index.css'
 
 const Fixed = () => {
   const dispatch = useDispatch()
@@ -130,7 +131,7 @@ const Fixed = () => {
             <div className="flex flex-wrap -mx-3 lg:mb-2 md:mb-2 mb-6 lg:items-center">
               <div className="lg:w-full">
                 <label
-                  class="block uppercase tracking-wide text-gray-700 flex text-xs font-normal mb-2 ml-3"
+                  class="uppercase tracking-wide text-gray-700 flex text-xs font-normal mb-2 ml-3"
                   for="grid-first-name"
                 >
                   Your Phone Number<p className="text-red-600	">*</p>
@@ -227,7 +228,7 @@ const Fixed = () => {
           </form>
         </div>
       </div>
-      <div className="mt-8 bg-white md:w-7/12 mx-10 lg:mt-20 lg:mx-0 lg:w-2/5">
+      <div className="mt-8 bg-white md mx-10 lg:mt-20 lg:mx-0 lg:w-2/5">
         <p className="p-3 font-medium">Payment for product</p>
         <div className="flex gap-x-20 md:gap-x-20 lg:gap-x-72">
           <p className="font-thin text-sm pl-3 lg:text-lg lg:font-normal">

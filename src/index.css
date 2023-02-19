@@ -8,3 +8,10 @@
 body {
   font-family: 'Lato' 'Poppins' 'Roboto';
 }
+
+@media (min-width: 768px) {
+
+  .md {
+      width: 54%;
+  }
+}

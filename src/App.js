@@ -13,7 +13,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/fixed/:share" element={<Fixed />} />
-          <Route path="/dynamic/:donate-vera-wangg" element={<Dynamic />} />
+          <Route path="/dynamic/:donate" element={<Dynamic />} />
         </Routes>
       </Router>
     </Provider>

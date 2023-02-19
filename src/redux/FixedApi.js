@@ -11,6 +11,7 @@ export const FixedPayment = (page_ref) => (dispatch) => {
       dispatch(setDataSuccess(response.data.data))
     })
     .catch((error) => {
+      console.log(error)
       dispatch(setDataError(error.message))
     })
 }
