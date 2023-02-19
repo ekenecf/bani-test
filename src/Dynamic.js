@@ -1,10 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 
-import { FaMoneyBillWave } from "react-icons/fa";
-import { GrFacebook, GrTwitter, GrInstagram } from "react-icons/gr";
-import { AiOutlineWhatsApp } from "react-icons/ai";
+import { FaMoneyBillWave } from 'react-icons/fa'
+import { GrFacebook, GrTwitter, GrInstagram } from 'react-icons/gr'
+import { AiOutlineWhatsApp } from 'react-icons/ai'
 import {
   setCountryCode,
   setPhoneNumber,
@@ -15,7 +15,6 @@ import {
   setPayment,
 } from './redux/Fixed'
 import { FixedPayment } from './redux/FixedApi'
-
 
 const Dynamic = () => {
   const dispatch = useDispatch()
@@ -117,9 +116,10 @@ const Dynamic = () => {
                 </label>
                 <div className="flex items-center ml-3 lg:w-full">
                   <div className="relative mb-2 lg:w-full">
-                    <select 
+                    <select
                       onChange={(e) => handleSelect(e)}
-                    class="block appearance-none w-full lg:w-full border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
+                      class="block appearance-none w-full lg:w-full border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                    >
                       <option>New Mexico</option>
                       <option>Missouri</option>
                       <option>Texas</option>
@@ -208,7 +208,9 @@ const Dynamic = () => {
       </div>
       <div className="mt-8 bg-white mx-10 lg:mt-20 lg:mx-0 lg:w-2/5">
         <p className="p-3 font-medium">Payment for product</p>
-        <p className="font-thin text-sm pl-3 lg:text-lg lg:font-normal">Total</p>
+        <p className="font-thin text-sm pl-3 lg:text-lg lg:font-normal">
+          Total
+        </p>
         <div className="flex h-2/5 justify-between lg:justify-start items-center my-4">
           <input
             class="appearance-none block w-3/12 lg:w-20 bg-gray-200 text-gray-700 text-center border rounded py-2 ml-4 leading-tight focus:outline-none focus:bg-white"
@@ -227,7 +229,7 @@ const Dynamic = () => {
         </button>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Dynamic;
+export default Dynamic

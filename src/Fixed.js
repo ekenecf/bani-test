@@ -14,7 +14,6 @@ import {
   setMessage,
   setDecrementCounter,
   setIncrementCounter,
-  setPayment,
 } from './redux/Fixed'
 import { FixedPayment } from './redux/FixedApi'
 
@@ -23,26 +22,16 @@ const Fixed = () => {
   let { share } = useParams()
   const ref_route = share.concat('-the-money')
 
-  console.log(ref_route)
-
-  useEffect(() => {
-    dispatch(FixedPayment(ref_route))
-  }, [])
-
   const {
     loading,
     data,
     error,
     phoneNumber,
     country_code,
-    phone,
     emailInput,
     FirstName,
     lastName,
-    message,
     increment_counter,
-    decrement_counter,
-    // payment,
   } = useSelector((state) => state.fixedReducer)
 
   const handleSelect = (e) => {
@@ -77,7 +66,32 @@ const Fixed = () => {
   const handleDecrementCounter = () => {
     dispatch(setDecrementCounter())
   }
-  console.log('incoming data', data)
+
+  useEffect(() => {
+    dispatch(FixedPayment(ref_route))
+     // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  const payWithBani = (e) => {
+    e.preventDefault()
+    window.BaniPopUp({
+      amount: increment_counter * data.page_amount || 1,
+      phoneNumber: phoneNumber,
+      email: emailInput,
+      firstName: FirstName,
+      lastName: lastName,
+      merchantKey:
+        data.length === 0 ? null : data.page_creator_details.account_pub_key,
+      merchantRef: data.length === 0 ? null : data.page_ref,
+      onClose: (response) => {
+        console.log('ONCLOSE DATA', response)
+      },
+      callback: function (response) {
+        let message = 'Payment complete! Reference: ' + response?.reference
+        console.log(message, response)
+      },
+    })
+  }
 
   return (
     <div className="h-max bg-slate-200 lg:flex lg:items-start">
@@ -130,7 +144,8 @@ const Fixed = () => {
                       <option>Select</option>
                       <option>+234</option>
                       <option>+1</option>
-                      <option>Texas</option>
+                      <option>+233</option>
+                      <option>+256</option>
                     </select>
                     <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
                       <svg
@@ -221,18 +236,16 @@ const Fixed = () => {
           <div className="flex gap-x-4">
             <MdOutlineAddCircle
               onClick={(e) => handleIncrementCounter(e)}
-              className="text-2xl md:text-3xl lg:text-4xl text-blue-700"
+              className="text-2xl md:text-3xl lg:text-4xl text-blue-700 cursor-pointer"
             />
             <input
-              type="Number"
               class="appearance-none block w-3/12 bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-              disabled
-              value={increment_counter}
+              readOnly
               placeholder={increment_counter}
             />
             <AiFillMinusCircle
               onClick={(e) => handleDecrementCounter(e)}
-              className="text-2xl md:text-3xl lg:text-4xl text-blue-700"
+              className="text-2xl md:text-3xl lg:text-4xl text-blue-700 cursor-pointer"
             />
           </div>
         </div>
@@ -246,7 +259,7 @@ const Fixed = () => {
             placeholder="NGN"
           />
           <input
-            disabled
+            readOnly
             class="shadow appearance-none border lg:w-3/4 rounded mr-3 py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline"
             value={
               data.page_amount
@@ -254,15 +267,22 @@ const Fixed = () => {
                 : increment_counter
             }
             placeholder={
-              data.page_amount
+              loading
+                ? 'Please wait...'
+                : data.page_amount
                 ? increment_counter * data.page_amount
                 : increment_counter
             }
           />
         </div>
-        <button class="bg-blue-500 w-11/12 mx-3 lg:mb-4 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded">
-          Pay{' '}
-          {data.page_amount
+        <button
+          class="bg-blue-500 w-11/12 mx-3 lg:mb-4 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded"
+          onClick={(e) => payWithBani(e)}
+        >
+          {' '}
+          {loading
+            ? 'Please wait...'
+            : data.page_amount
             ? increment_counter * data.page_amount
             : increment_counter}
         </button>

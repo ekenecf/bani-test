@@ -8,12 +8,9 @@ export const FixedPayment = (page_ref) => (dispatch) => {
   axios
     .get(`${USERURL}/${page_ref}`)
     .then((response) => {
-        console.log(response.data.data)
       dispatch(setDataSuccess(response.data.data))
-    //   localStorage.setItem('serverResponse', JSON.stringify(response.data.data));
     })
     .catch((error) => {
-        console.log(error)
-    //   dispatch(setDataError(error.response.data.message.Message))
+      dispatch(setDataError(error.message))
     })
 }

@@ -31,12 +31,10 @@ export const setCountryCode = (data) => ({
 
 export const setIncrementCounter = () => ({
   type: ActionTypes.INCREMENTCOUNTER,
-  //   payload: data,
 })
 
 export const setDecrementCounter = () => ({
   type: ActionTypes.DECREMENTCOUNTER,
-  //   payload: data,
 })
 
 export const setDataLoading = () => ({
@@ -78,7 +76,6 @@ const initialState = {
   phoneNumber: '',
   country_code: '',
   increment_counter: 1,
-  //   decrement_counter: 0,
   emailInput: '',
   FirstName: '',
   lastName: '',
@@ -97,16 +94,19 @@ const fixedReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         data: payload,
+        loading: false,
       }
     case ActionTypes.PHONE_NUMBER:
       return {
         ...state,
         phoneNumber: payload,
+        loading: false,
       }
     case ActionTypes.INCREMENTCOUNTER:
       return {
         ...state,
         increment_counter: (state.increment_counter += 1),
+        loading: false,
       }
     case ActionTypes.DECREMENTCOUNTER:
       if (state.increment_counter === 0) {
